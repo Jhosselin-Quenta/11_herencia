@@ -1,0 +1,86 @@
+#include <iostream>
+using namespace std;
+
+// Clase padre
+class Persona {
+protected:
+    string nombre;
+    int edad;
+
+public:
+    Persona(string n, int e) {
+        nombre = n;
+        edad = e;
+    }
+
+    void mostrarDatos() {
+        cout << "Nombre: " << nombre << endl;
+        cout << "Edad: " << edad << endl;
+    }
+};
+
+// Clase hija
+class Estudiante : public Persona {
+private:
+    float nota;
+
+public:
+    Estudiante(string n, int e) : Persona(n, e) {
+        nota = 0;
+    }
+
+    void mostrarNota() {
+        mostrarDatos();
+        cout << "Nota: " << nota << endl;
+    }
+
+    void registrarNota(float n) {
+        nota = n;
+    }
+};
+
+// Clase hija
+class Docente : public Persona {
+public:
+    Docente(string n, int e) : Persona(n, e) {
+    }
+
+    void ingresarNota(Estudiante &alumno, float n) {
+        if (n >= 0 && n <= 20) {
+            alumno.registrarNota(n);
+            cout << "Nota registrada." << endl;
+        } else {
+            cout << "Nota no valida." << endl;
+        }
+    }
+};
+
+// Programa principal
+int main() {
+    Docente profesor("Carlos", 40);
+    Estudiante alumno("Ana", 18);
+
+    int opcion;
+    float nota;
+
+    do {
+        cout << "\n SISTEMA DE NOTAS" << endl;
+        cout << "1. Ingresar nota" << endl;
+        cout << "2. Ver notas del estudiante" << endl;
+        cout << "3. Salir" << endl;
+        cout << "Opcion: ";
+        cin >> opcion;
+
+        if (opcion == 1) {
+            cout << "Ingrese la nota: ";
+            cin >> nota;
+            profesor.ingresarNota(alumno, nota);
+        }
+        else if (opcion == 2) {
+            alumno.mostrarNota();
+        }
+
+    } while (opcion != 3);
+
+    return 0;
+}
