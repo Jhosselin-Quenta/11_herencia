@@ -1,0 +1,78 @@
+//pruebaVEHICULO
+#include<iostream>
+#include<string>
+using namespace std;
+
+class vehiculo{
+	protected:
+		string numeroPlaca;
+		string color;
+		string marca;
+		int velocimiento;
+	public:
+		vehiculo(string,string,string,int);
+		void mostrarDatos();
+		void cambiarVelocidad();
+};
+vehiculo::vehiculo(string n,string t, string d, int e){
+
+	numeroPlaca= n;
+	color=d;
+	marca= t;
+	velocimiento=e;
+}
+
+void vehiculo::mostrarDatos(){
+	cout<< numeroPlaca<<"de color#"<<color<<"con velocidad de "<<velocimiento<<"velocidad"<<endl;
+}
+//derivamos
+class automovil :public vehiculo{
+	private:
+		int cantidadPuertas;
+		int cantidadPasajeros;
+	public:
+		automovil(int ,int);
+		void mostrarAutomovil();
+		
+};
+automovil::automovil(string n, string t, string d, int e,int a, int b);
+	:vehiculo(n,t,d,e){
+		cantidadPuertas=a;
+		cantidadPasajeros=b;
+	}
+void automovil::mostrarAutomovil(){
+	mostrarDatos();
+	cout<<"vehiculo com puetas"<<cantidadPuertas<<"su cantidad de pasajeros"<<cantidadPasajeros<<endl;	
+}
+//otra derivacion
+class camion: public vehiculo{
+	private:
+		int cargas;
+	public:
+		camion(int,int ,int);
+		void mostrarCamion();
+};
+camion::camion(string n, string d, string t, int e) :vehiculo(n, d ,e){
+	
+}
+void camion::mostrarCamion(){
+	mostrarDatos();
+	cout<<" "
+}
+
+int main(){
+	string numeroPlaca;
+	
+	vehiculo t(placa,"23-456",color,"azul"marca"toyota,"velocimiento"34");
+	t.mostrarDatos();
+	cout<<endl;
+	
+	automovil d( subirPasajeros,"4",bajarPasajero"2");
+	d.mostrarAutomovil();
+	cout<<endl;
+	
+	camion e(nombre , carga,"34");
+	e.mostrarCamion();
+	cout<<endl;
+	return 0;
+}
